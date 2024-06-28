@@ -1,162 +1,74 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+import pandas as pd
+import matplotlib.pyplot as plt
+import statistics
 
-# C extensions
-*.so
+lista = []
+names = []
+esps = []
+mates = []
+comps = []
+ings = []
+promedio = 0
+acumulador = 0
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+for i in range (5):
+    print ("cual es su nombre?")
+    name = input()
+    names.append(name)
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+    print ("dame tu calificacion de español")
+    esp = float(input())
+    esps.append(esp)
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+    print ("dame tu calificacion de matematicas")
+    mate = float(input())
+    mates.append(mate)
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
+    print ("dame tu calificacion de computacion")
+    comp = float(input())
+    comps.append(comp)
 
-# Translations
-*.mo
-*.pot
+    print ("dame tu calificacion de ingles")
+    ing = float(input())
+    ings.append(ing)
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+    promedio = (esp + mate + comp + ing) / 4
+    lista.append(promedio)
 
-# Flask stuff:
-instance/
-.webassets-cache
+promedioE = statistics.mean(esps)
+promedioM = statistics.mean(mates)
+promedioC = statistics.mean(comps)
+promedioEn = statistics.mean(ings)
+promedioG = statistics.mean(lista)
 
-# Scrapy stuff:
-.scrapy
+ValorMayor = max(lista)
+indice = lista.index(ValorMayor)
+MejorAlumno = names[indice]
+print("El mejor alumno es", MejorAlumno)
 
-# Sphinx documentation
-docs/_build/
+print ("promedio de español es de: ", promedioE)
+print ("promedio de matematicas es de: ", promedioM)
+print ("promedio de computacion es de: ", promedioC)
+print ("promedio de ingles es de: ", promedioEn)
 
-# PyBuilder
-.pybuilder/
-target/
+print ("el promedio del grupo es de: ",promedioG)
 
-# Jupyter Notebook
-.ipynb_checkpoints
+if promedio <= 5:
+    acumulador = acumulador + 1
 
-# IPython
-profile_default/
-ipython_config.py
+    print ("la cantidad de reprobados es de: ",acumulador)
 
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
+datos = {'nombres': names,
+         'español':esps,
+         'matematicas':mates,
+         'computacion':comps,
+         'ingles':ings,
+         'promedio':lista
+        }
+datos
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+df = pd.DataFrame (datos, columns=['nombres', 'español', 'matematicas', 'computacion', 'ingles'])
+df
 
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
-#   in version control.
-#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
-.pdm.toml
-.pdm-python
-.pdm-build/
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
+df = pd.DataFrame(datos, columns=['nombres', 'promedio'])
+df
